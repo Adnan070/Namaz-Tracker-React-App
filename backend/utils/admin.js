@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+mongoose.set('useFindAndModify', false);
 module.exports = async () => {
   const uri =
     "mongodb+srv://ak-development:CW4Yh7Opomvr5CSH@ak-development.gmdnp.mongodb.net/tracker?retryWrites=true&w=majority";

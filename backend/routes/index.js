@@ -5,6 +5,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require("../utils/auth");
 // Get all Handlers here
 // ==============================
 
+const { getRecord, postRecordOfOneDay } = require("./record");
 const { signUpUser, login, logout, getUsers } = require("./users");
 
 // Call above handlers here
@@ -15,22 +16,13 @@ const { signUpUser, login, logout, getUsers } = require("./users");
 
 router.post("/register", signUpUser);
 router.post("/login", login);
-
+router.post('/record',ensureAuthenticated, postRecordOfOneDay)
 // 2. All Get Routes are here
 // ----------------------------------
 router.get("/logout", logout);
 router.get("/users", ensureAuthenticated, getUsers);
-// Welcome Page
-router.get("/", forwardAuthenticated, (req, res) => {
-  res.json({ auth: false });
-});
+router.get('/record/:uid',ensureAuthenticated, getRecord)
 
-// Dashboard
-router.get("/dashboard", ensureAuthenticated, (req, res) =>
-  res.json({
-    auth: true,
-    user: req.user,
-  })
-);
+
 
 module.exports = router;

@@ -66,8 +66,7 @@ exports.signUpUser = (req, res) => {
 exports.login = (req, res, next) => {
   passport.authenticate(
     "local",
-    { successRedirect: "/dashboard" },
-    (err, user, info) => {
+      (err, user, info) => {
       console.log(user);
       if (err) {
         return next(err);

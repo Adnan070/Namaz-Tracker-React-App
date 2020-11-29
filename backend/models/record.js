@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+
+// this is scheema
+
 const RecordSchema = new mongoose.Schema({
   uid: {
     type: String,

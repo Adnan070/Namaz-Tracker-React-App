@@ -31,7 +31,6 @@ exports.postRecordOfOneDay = (req, res) => {
     if (data) {
       Record.findOneAndUpdate(
         {
-        //   uid: req.body.uid,
           $and: [
             {
               Date: { $eq: req.body.Date },

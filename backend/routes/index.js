@@ -5,7 +5,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require("../utils/auth");
 // Get all Handlers here
 // ==============================
 
-const { getRecord, postRecordOfOneDay } = require("./record");
+const { getRecord, postRecordOfOneDay, clearOneRecord } = require("./record");
 const { signUpUser, login, logout, getUsers } = require("./users");
 
 // Call above handlers here

@@ -12,64 +12,45 @@ exports.getRecord = (req, res) => {
 };
 
 exports.postRecordOfOneDay = (req, res) => {
-  let rec = new Record({
-    uid: req.body.uid,
-    Date: req.body.Date,
-    Namaz: req.body.Namaz,
-  });
+  let rec = new Record();
 
-  //   { $set: { gender: { $switch: {
-  //     branches: [
-  //         { case: { $eq: [ "$gender", 'male' ] }, then: "female" },
-  //         { case: { $eq: [ "$gender", 'female' ] }, then: "male" }
-  //     ],
-  //     default: ""
-  // } } } }
-
-  Record.findOne({ Date: req.body.Date, uid: req.body.uid }).then((data) => {
-    console.log(data);
-    if (data) {
-      Record.findOneAndUpdate(
-        {
-          $and: [
-            {
-              Date: { $eq: req.body.Date },
-              Date: { $exists: true },
-            },
-            {
-              uid: { $eq: req.body.uid },
-              uid: { $exists: true },
-            },
-          ],
-        },
-        {
-          $set: {
-            Namaz: req.body.Namaz,
-          },
-        },
-        (err, data) => {
-          if (err) {
-            res.json({ msg: "Some Server Issue" });
-          } else {
-            console.log(data);
-            res.json({ msg: "Record Updated.." });
-          }
-        }
-      );
-    } else {
-      rec
-        .save()
-        .then((data) => {
-          res.json({ msg: "Successfully added Record!", data });
-        })
-        .catch((err) => {
-          res
-            .status(500)
-            .json({ msg: "Oops!, There might some problem with server" });
-        });
+  Record.findOneAndUpdate(
+    {
+      $and: [
+        { Date: { $eq: req.body.Date } },
+        { Date: { $exists: true } },
+        { uid: { $eq: req.body.uid } },
+        { uid: { $exists: true } },
+      ],
+    },
+    {
+      $set: {
+        Namaz: req.body.Namaz,
+      },
+    },
+    (err, data) => {
+      console.log(data);
+      if (err) {
+        res.json({ msg: "Some Server Issue" });
+      } else if (!data) {
+        rec
+          .save()
+          .then((data) => {
+            res.json({ msg: "Successfully added Record!", data });
+          })
+          .catch((err) => {
+            res
+              .status(500)
+              .json({ msg: "Oops!, There might some problem with server" });
+          });
+      } else {
+        console.log(data);
+        res.json({ msg: "Record Updated.." });
+      }
     }
-  });
+  );
 };
+
 
 exports.updateOneRecord = (req, res) => {
   let rec = new Record();

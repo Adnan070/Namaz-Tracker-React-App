@@ -1,0 +1,19 @@
+{
+  "name": "namaz-tracker",
+  "version": "1.0.0",
+  "description": "namaz app",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adnan070/Namaz-Tracker-React-App.git"
+  },
+  "author": "Adnana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adnan070/Namaz-Tracker-React-App/issues"
+  },
+  "homepage": "https://github.com/Adnan070/Namaz-Tracker-React-App#readme"
+}

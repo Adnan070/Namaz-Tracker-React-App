@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+Installing node-sass
+(Prerequisite) If you don't have npm, install Node.js first.
+$ npm install -g node-sass installs node-sass globally -g.
+This will hopefully install all you need, if not read libsass at the bottom.
+
+How to use node-sass from Command line and npm scripts
+General format:
+
+$ node-sass [options] <input.scss> [output.css]
+$ cat <input.scss> | node-sass > output.css
+Examples:
+
+$ node-sass my-styles.scss my-styles.css compiles a single file manually.
+$ node-sass my-sass-folder/ -o my-css-folder/ compiles all the files in a folder manually.
+$ node-sass -w sass/ -o css/ compiles all the files in a folder automatically whenever the source file(s) are modified. -w adds a watch for changes to the file(s).
+
+
+git remote add origin https://github.com/yourusername/your-repo-name.git
+
+*Note: your-repo-name should be created in GitHub before you do a git remote add origin ... Once you have done that, git now knows about your remote repository. You can then tell it to push (which is "upload") your commited files:
+
+git push -u origin master

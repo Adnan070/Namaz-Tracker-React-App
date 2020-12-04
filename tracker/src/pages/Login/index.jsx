@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Row,
@@ -13,33 +13,36 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Logo from "../../assets/img/logo-with-out-bg.png";
 import { loginUser } from "../../redux/actions/userAction";
-import { Formik, ErrorMessage } from "formik";
-import * as Yup from "yup";
-// import "../App.css";
+import PropTypes from "prop-types";
+// import * as Yup from "yup";
+import "../../App.css";
 
-const initialValues = {
-  email: "",
-  pass: "",
-};
-
-const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid Email Format").required("Required"),
-  pass: Yup.string().length(6, "Invalid Password").required("Required!"),
-});
+// const validationSchema = Yup.object({
+//   email: Yup.string().email("Invalid Email Format").required("Required"),
+//   pass: Yup.string().length(6, "Invalid Password").required("Required!"),
+// });
 
 function Login(props) {
   const onSubmit = (e) => {
     e.preventDefault();
+    let { target } = e;
     let credential = {
-      email: e.target[0].value,
-      pass: e.target[1].value,
+      email: target[0].value,
+      pass: target[1].value,
     };
     console.log(credential);
     props.loginUser(credential);
   };
 
+  useEffect(() => {
+    if (props.errors) {
+      console.trace(props.errors);
+    }
+  }, [props]);
+
   if (props.authenticated) {
-    return <Redirect to="/register" />;
+    console.log("Success");
+    return <Redirect to="/dashboard" />;
   } else {
     return (
       <Container fluid className="welcome">
@@ -56,12 +59,6 @@ function Login(props) {
               </Card.Body>
 
               <Card.Body>
-                {/* <Formik
-                  initialValues={initialValues}
-                  validationSchema={validationSchema}
-                  // onSubmit={onSubmit}
-                > */}
-                {/* {(formik) => ( */}
                 <Form onSubmit={(e) => onSubmit(e)}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -69,13 +66,7 @@ function Login(props) {
                       type="email"
                       placeholder="Enter email"
                       name="email"
-                      // {...formik.getFieldProps('pass')}
                     />
-                    {/* <ErrorMessage name="email">
-                          {(error) => (
-                            <div style={{ color: "red" }}>{error}</div>
-                          )}
-                        </ErrorMessage> */}
                   </Form.Group>
 
                   <Form.Group controlId="formBasicPassword">
@@ -84,29 +75,17 @@ function Login(props) {
                       type="password"
                       placeholder="Password"
                       name="pass"
-                      // {...formik.getFieldProps('pass')}
                     />
-                    {/* <ErrorMessage name="pass">
-                          {(error) => (
-                            <div style={{ color: "red" }}>{error}</div>
-                          )}
-                        </ErrorMessage> */}
                   </Form.Group>
-                  {/* <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                      </Form.Group> */}
 
                   <Button
                     variant="primary"
                     type="submit"
                     style={{ width: "100%" }}
-                    // disabled={!formik.isValid}
                   >
                     Login
                   </Button>
                 </Form>
-                {/* )}
-                </Formik> */}
               </Card.Body>
             </Card>
           </Col>
@@ -117,15 +96,21 @@ function Login(props) {
   }
 }
 
+Login.prototype = {
+  error: PropTypes.string,
+  authenticated: PropTypes.bool,
+};
+
 /**
  *
  * @param {Global State} state
  * bind state to the component props
  */
 function mapStateToProps(state) {
-  const { authenticated } = state;
+  const { user, UI } = state;
   return {
-    authenticated,
+    authenticated: user.authenticated,
+    errors: UI.errors,
   };
 }
 

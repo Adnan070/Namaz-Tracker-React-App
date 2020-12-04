@@ -4,34 +4,37 @@ import {
   LOADING_USERS,
   SET_USER,
   SET_ERRORS,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
 } from "./types";
+import axios from '../../config';
 
-export const loginUser = (credential) => (dispatch) => {
+
+export const loginUser =  (credentials) => async (dispatch) => {
+  let data = await axios.post('/login',credentials);
+  console.log(data)
   dispatch({
     type: LOADING_USERS,
   });
 
-  if (
-    credential.email === "adnanjutt@gmail.com" &&
-    credential.pass === "123456"
-  ) {
-    // setTimeout(() => {
-      credential.name = "adnan";
-      credential.phno = "0342252323";
-      credential.address = "128 / 15 majeed SRE karachi";
-    // },5000); 
-
+  if (credentials.email === "" || credentials.pass === "") {
+    dispatch({
+      type: SET_ERRORS,
+      payload: 'Input Field could not be empty!'
+    })
+  } 
+  if (data.data.user) {
     dispatch({
       type: SET_USER,
-      payload: credential,
+      payload: data.data.user,
     });
-    dispatch({type: CLEAR_ERRORS    })
-    dispatch({type: SET_AUTHENTICATED})
-  } else {
-      dispatch({
-          type: SET_ERRORS,
-          payload: 'Authentication Failed Please input correct Credentials...'
-      })
+
+    dispatch({ type: CLEAR_ERRORS });
+    dispatch({ type: SET_AUTHENTICATED });
+  } 
+  else {
+    dispatch({
+      type: SET_ERRORS,
+      payload: "Authentication Failed Please input correct Credentials...",
+    });
   }
 };

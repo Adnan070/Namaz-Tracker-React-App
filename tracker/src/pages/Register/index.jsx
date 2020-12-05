@@ -8,7 +8,6 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo-with-out-bg.png";
 
 import { bindActionCreators } from "redux";

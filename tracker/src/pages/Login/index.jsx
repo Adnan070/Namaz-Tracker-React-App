@@ -7,6 +7,7 @@ import {
   Image,
   Form,
   Button,
+  Spinner,
 } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -78,13 +79,20 @@ function Login(props) {
                     />
                   </Form.Group>
 
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    style={{ width: "100%" }}
-                  >
-                    Login
-                  </Button>
+                  <Form.Group>
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      style={{ width: "100%" }}
+                    >
+                      <div className="d-flex justify-content-center align-items-center">
+                        {props.loading && (
+                          <Spinner animation="grow" size="sm" role="status" />
+                        )}
+                        <span style={{ paddingLeft: 5 }}>Login</span>
+                      </div>
+                    </Button>
+                  </Form.Group>
                 </Form>
               </Card.Body>
             </Card>
@@ -110,6 +118,7 @@ function mapStateToProps(state) {
   const { user, UI } = state;
   return {
     authenticated: user.authenticated,
+    loading: user.loading,
     errors: UI.errors,
   };
 }

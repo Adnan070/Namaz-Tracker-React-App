@@ -10,11 +10,11 @@ import axios from '../../config';
 
 
 export const loginUser =  (credentials) => async (dispatch) => {
-  let data = await axios.post('/login',credentials);
-  console.log(data)
   dispatch({
     type: LOADING_USERS,
   });
+  let data = await axios.post('/login',credentials);
+  console.log(data)
 
   if (credentials.email === "" || credentials.pass === "") {
     dispatch({

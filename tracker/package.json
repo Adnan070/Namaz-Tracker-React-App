@@ -25,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext js,jsx src",
+    "eslint-check": "eslint --print-config App.js | eslint-config-prettier-check"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +46,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "eslint-plugin-testing-library": "^3.9.0",
+    "prettier": "^2.2.1"
   }
 }

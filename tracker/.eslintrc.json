@@ -18,22 +18,25 @@
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "plugins": ["prettier","react"],
+  "plugins": ["prettier", "react"],
   "parser": "babel-eslint",
   "rules": {
-    "prettier/prettier": ["error",{
-      "semi": false,
-      "useTabs": false,      
-      "printWidth": 80,     
-      "tabWidth": 2,        
-      "singleQuote": true, 
-      "trailingComma": "all",
-      "jsxSingleQuote": false,
-      "jsxBracketSameLine": false,
-      "rcVerbose": true,
-      "braceStyle":false,
-      "endOfLine":"auto"
-  }],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "useTabs": false,
+        "printWidth": 80,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "jsxSingleQuote": false,
+        "jsxBracketSameLine": false,
+        "rcVerbose": true,
+        "braceStyle": false,
+        "endOfLine": "auto"
+      }
+    ],
     "object-curly-spacing": "off",
     "keyword-spacing": [2, { "before": true, "after": true }],
     "no-constant-condition": 2,
@@ -100,7 +103,7 @@
     "no-new-require": 2,
 
     "array-bracket-spacing": [2, "never"],
-    "brace-style": [2, "stroustrup", { "allowSingleLine": false }],
+    // "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
     "comma-spacing": [2, { "before": false, "after": true }],
     "comma-style": [2, "last"],
     // "comma-dangle": [2, "never"],
@@ -117,7 +120,7 @@
     // "object-curly-spacing": [2, "never"],
     "quotes": [2, "single", "avoid-escape"],
     "sort-vars": 2,
-    "space-before-function-paren": [2, "always"],
+    // "space-before-function-paren": [2, "always"],
     "space-in-parens": [2, "never"],
     "space-infix-ops": 2,
     "space-unary-ops": [1, { "words": true, "nonwords": false }],
@@ -144,7 +147,5 @@
     "semi": [1, "never"],
     "space-before-blocks": [2, "always"],
     "strict": 0
-
   }
-  
 }

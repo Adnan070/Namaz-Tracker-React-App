@@ -1,16 +1,21 @@
-import React from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import PropTypes from 'prop-types'
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-class register extends React.Component {
+class Register extends React.Component {
   render() {
-    console.log(this.props.authenticated);
+    console.log(this.props.authenticated)
     if (!this.props.authenticated) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/login" />
     }
-    return <div>Hello from Dashboard</div>;
+    return <div>Hello from Dashboard</div>
   }
+}
+
+Register.propTypes = {
+  authenticated: PropTypes.bool,
 }
 
 /**
@@ -19,12 +24,12 @@ class register extends React.Component {
  * bind state to the component props
  */
 function mapStateToProps(state) {
-  const { user, UI } = state;
+  const { user, UI } = state
   return {
     credentials: user.credentials,
     authenticated: user.authenticated,
     errors: UI.errors,
-  };
+  }
 }
 
 /**
@@ -33,7 +38,7 @@ function mapStateToProps(state) {
  * bind actions to the component props
  */
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

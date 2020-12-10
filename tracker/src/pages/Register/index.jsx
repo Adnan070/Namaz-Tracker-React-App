@@ -1,36 +1,29 @@
-import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Image,
-  Form,
-  Button,
-} from "react-bootstrap";
-import Logo from "../../assets/img/logo-with-out-bg.png";
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Container, Row, Col, Card, Image, Form, Button } from 'react-bootstrap'
+import Logo from '../../assets/img/logo-with-out-bg.png'
 
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // import "../App.css";
 
 function Register(props) {
   const handleSubmition = (data) => {
-    console.log(data);
-  };
+    console.log(data)
+  }
 
-  console.log(props.credentials);
+  console.log(props.credentials)
 
   return (
     <Container fluid className="welcome">
-      <Row style={{ height: "100px" }}></Row>
+      <Row style={{ height: '100px' }}></Row>
       <Row>
         <Col></Col>
         <Col>
           <Card>
             <Card.Body className="text-center">
-              <Image src={Logo} style={{ width: "100px" }} rounded />
+              <Image src={Logo} style={{ width: '100px' }} rounded />
               <Card.Title className="text-center tracker-logo-heading">
                 Namaz Tracker
               </Card.Title>
@@ -47,7 +40,7 @@ function Register(props) {
                   {/* <Form.Label>Email address</Form.Label> */}
                   <Form.Control type="email" placeholder="Enter email" />
                   <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    We&apos;ll never share your email with anyone else.
                   </Form.Text>
                 </Form.Group>
 
@@ -67,7 +60,7 @@ function Register(props) {
                 <Button
                   variant="primary"
                   type="submit"
-                  style={{ width: "100%" }}
+                  style={{ width: '100%' }}
                 >
                   Login
                 </Button>
@@ -78,7 +71,11 @@ function Register(props) {
         <Col></Col>
       </Row>
     </Container>
-  );
+  )
+}
+
+Register.propTypes = {
+  credentials: PropTypes.object,
 }
 
 /**
@@ -87,10 +84,10 @@ function Register(props) {
  * bind state to the component props
  */
 function mapStateToProps(state) {
-  const { credentials } = state;
+  const { credentials } = state
   return {
     credentials,
-  };
+  }
 }
 
 /**
@@ -99,7 +96,7 @@ function mapStateToProps(state) {
  * bind actions to the component props
  */
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
